@@ -3,7 +3,7 @@
 from error_handling import ExtendEnvironmentError
 
 class Environment(object):
-    '''A environment is a sequence of frames, where each frame
+    """A environment is a sequence of frames, where each frame
     is a table of bindings that associate variables and values.
     
     Except for the initial environment set up 
@@ -11,7 +11,7 @@ class Environment(object):
     should be created by extending some existing environment.
     So only the attribute `enclosing_environment` of the initial
     environment is None.
-    '''
+    """
     def __init__(self, variables = tuple(), values = tuple(), enclosing_environment = None):
         '''Use `variable` and `values` to construct first frame, and get following frames from enclosing environment.
         '''
@@ -45,13 +45,13 @@ class Environment(object):
         #sys.exit("Unbound variable {} in environment.set_variable_value".format(variable)) 
 
     def extend_environment(self, variables, values):
-        '''Create an new environment that uses current environment as 
+        """Create an new environment that uses current environment as
         enclosing_environment, and uses `variables` and `values` to
         create the first frame of the new environment.
         
         `variable`: iterable
         `value`: iterable
-        '''
+        """
         if len(variables) != len(values):
             raise ExtendEnvironmentError("Length of variables is not equal to length of values")
         else:

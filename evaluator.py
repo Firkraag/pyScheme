@@ -57,7 +57,7 @@ def apply_primitive_procedure(procedure, arguments):
     try:
         return primitive_implementation(procedure)(*arguments)
     except TypeError as e:
-        print "primitive_procedure {} ".format(e.message)
+        print("primitive_procedure {} ".format(e.message))
         raise e
 
 def is_compound_procedure(procedure):
