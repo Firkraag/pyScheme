@@ -2,7 +2,8 @@
 
 from error_handling import ExtendEnvironmentError
 
-class Environment(object):
+
+class Environment:
     """A environment is a sequence of frames, where each frame
     is a table of bindings that associate variables and values.
     
@@ -12,37 +13,38 @@ class Environment(object):
     So only the attribute `enclosing_environment` of the initial
     environment is None.
     """
-    def __init__(self, variables = tuple(), values = tuple(), enclosing_environment = None):
-        '''Use `variable` and `values` to construct first frame, and get following frames from enclosing environment.
-        '''
+
+    def __init__(self, variables=tuple(), values=tuple(), enclosing_environment=None):
+        """Use `variable` and `values` to construct first frame, and get following frames from enclosing environment.
+        """
         self.first_frame = dict(zip(variables, values))
-        if enclosing_environment == None:
+        if enclosing_environment is None:
             self.frames = [self.first_frame]
         else:
             self.frames = [self.first_frame] + enclosing_environment.frames
 
     def set_binding(self, variable, value):
-        '''If `variable` is unbound in the environment, signals an error, 
+        """If `variable` is unbound in the environment, signals an error,
         otherwise changes the binding of `variable` to `value`.
-        '''
+        """
         for frame in self.frames:
             if variable in frame:
                 frame[variable] = value
-                return 
+                return
         else:
             raise NameError("Unbound variable {}".format(variable))
-        #sys.exit("Unbound variable {} in environment.set_variable_value".format(variable)) 
+        # sys.exit("Unbound variable {} in environment.set_variable_value".format(variable))
 
     def get_binding(self, variable):
-        '''Return the value that is bound to the symbol `variable` in the environment,
+        """Return the value that is bound to the symbol `variable` in the environment,
         or signals an error if `variable` is Unbound
-        '''
+        """
         for frame in self.frames:
             if variable in frame:
                 return frame[variable]
         else:
             raise NameError("Unbound variable {}".format(variable))
-        #sys.exit("Unbound variable {} in environment.set_variable_value".format(variable)) 
+        # sys.exit("Unbound variable {} in environment.set_variable_value".format(variable))
 
     def extend_environment(self, variables, values):
         """Create an new environment that uses current environment as
@@ -58,7 +60,7 @@ class Environment(object):
             return Environment(variables, values, self)
 
     def define_binding(self, variable, value):
-        '''Adds to the first frame in the environment a new binding that 
+        """Adds to the first frame in the environment a new binding that
         associates `variable` with `value`
-        '''
+        """
         self.first_frame[variable] = value

@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-class ExtendEnvironmentError(StandardError):
+class ExtendEnvironmentError(Exception):
     pass
 
-class EvalError(StandardError):
+
+class EvalError(Exception):
     pass
 
-class ApplyError(StandardError):
+
+class ApplyError(Exception):
     pass

@@ -7,6 +7,7 @@ from environment import Environment
 from primitive_procedure import primitive_procedure_names, primitive_procedure_objects
 from error_handling import EvalError, ApplyError
 
+
 class EvaluatorTestCase(unittest.TestCase):
     def test_is_self_evaluating(self):
         self.assertTrue(eval.is_self_evaluating(123))
@@ -92,7 +93,7 @@ class EvaluatorTestCase(unittest.TestCase):
         self.assertTrue(eval.is_symbol("abc"))
         self.assertFalse(eval.is_symbol(1))
         self.assertFalse(eval.is_symbol([]))
-        self.assertFalse(eval.is_symbol([1,2,3]))
+        self.assertFalse(eval.is_symbol([1, 2, 3]))
 
     def test_is_tagged_list(self):
         self.assertFalse(eval.is_tagged_list([], "begin"))
@@ -103,9 +104,9 @@ class EvaluatorTestCase(unittest.TestCase):
         self.assertFalse(eval.is_variable([]))
         self.assertFalse(eval.is_variable([1, 2, 3]))
 
-    #def test_is_cond_else_clause(self):
-        #self.assertTrue(eval.is_cond_else_clause())
-        #self.assertTrue(eval.is_cond_else_clause())
+    # def test_is_cond_else_clause(self):
+    # self.assertTrue(eval.is_cond_else_clause())
+    # self.assertTrue(eval.is_cond_else_clause())
 
     def test_text_of_quotation(self):
         exp = ['quote', 2]
@@ -145,7 +146,7 @@ class EvaluatorTestCase(unittest.TestCase):
 
     def test_definition_value(self):
         exp = ["define", "n", 1]
-        self.assertEqual(eval.definition_value(exp),1)
+        self.assertEqual(eval.definition_value(exp), 1)
         exp = ["define", ["foo", "n"], ["+", 1, "n"], ["+", 2, "n"]]
         self.assertEqual(eval.definition_value(exp), ['lambda', ["n"], ["+", 1, "n"], ["+", 2, "n"]])
 
@@ -304,7 +305,7 @@ class EvaluatorTestCase(unittest.TestCase):
         body = [1, 2]
         procedure = eval.make_procedure(parameters, body, env)
         self.assertEqual(eval.procedure_environment(procedure), env)
-    
+
     def test_apply(self):
         env = Environment(primitive_procedure_names, primitive_procedure_objects)
         # test compound procedure
@@ -322,4 +323,3 @@ class EvaluatorTestCase(unittest.TestCase):
 
     def test_eval(self):
         pass
-

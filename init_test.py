@@ -18,7 +18,7 @@ def parseInput(input, index, result):
             while i < n and (not input[i].isspace()) and input[i] != '(' and input[i] != ')':
                 l.append(input[i])
                 i += 1
-            string = ''.join(l) 
+            string = ''.join(l)
             if string.isdigit():
                 result.append(int(string))
             else:
@@ -27,7 +27,9 @@ def parseInput(input, index, result):
                 except:
                     result.append(string)
 
+
 import sys
+
 result = []
 parseInput(sys.argv[1], 0, result)
-print result
+print(result)
