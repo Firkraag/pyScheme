@@ -2,7 +2,9 @@
 # coding=utf-8
 
 import unittest
-from primitive_procedure import And, Not, Or, add, assignment, car, cdr, cons, div, equal, less, mul, null, pair, same, set_car, set_cdr, sub
+from primitive_procedure import And, Not, Or, add, assignment, car, cdr, cons, div, equal, less, mul, null, pair, same, \
+    set_car, set_cdr, sub
+
 
 class PrimitiveProceduresTestCase(unittest.TestCase):
     def test_add(self):
@@ -31,14 +33,14 @@ class PrimitiveProceduresTestCase(unittest.TestCase):
             cons(1, 1)
 
     def test_car(self):
-        self.assertEqual(car([1,2,3]), 1)
+        self.assertEqual(car([1, 2, 3]), 1)
         with self.assertRaises(TypeError):
             car(1)
         with self.assertRaises(TypeError):
             car([])
 
     def test_cdr(self):
-        self.assertEqual(cdr([1,2,3]), [2, 3])
+        self.assertEqual(cdr([1, 2, 3]), [2, 3])
         self.assertEqual(cdr([1]), [])
         with self.assertRaises(TypeError):
             cdr(1)
@@ -52,14 +54,14 @@ class PrimitiveProceduresTestCase(unittest.TestCase):
             null(1)
 
     def test_And(self):
-        self.assertTrue(And(True,  True))
-        self.assertFalse(And(True,  False))
+        self.assertTrue(And(True, True))
+        self.assertFalse(And(True, False))
         self.assertFalse(And(False, True))
         self.assertFalse(And(False, False))
 
     def test_Or(self):
-        self.assertTrue(Or(True,  True))
-        self.assertTrue(Or(True,  False))
+        self.assertTrue(Or(True, True))
+        self.assertTrue(Or(True, False))
         self.assertTrue(Or(False, True))
         self.assertFalse(Or(False, False))
 

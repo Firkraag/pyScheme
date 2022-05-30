@@ -131,4 +131,4 @@ primitive_procedures = {"+": add, "-": sub, "*": mul, "/": div, "<": less, "=": 
                         "pair?": pair, "and": And, "or": Or, "not": Not, "atom?": atom, "length": length,
                         "display": display, "newline": newline}
 primitive_procedure_names = primitive_procedures.keys()
-primitive_procedure_objects = map(lambda proc: ["primitive", proc], primitive_procedures.values())
+primitive_procedure_objects = list(map(lambda proc: ["primitive", proc], primitive_procedures.values()))

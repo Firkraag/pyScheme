@@ -10,7 +10,7 @@ from primitive_procedure import primitive_procedure_names, primitive_procedure_o
 def load(filename):
     """Load scheme source file `filename`
     """
-    # The parameter fildname is of the form '"path"'
+    # The parameter filename is of the form '"path"'
     filename = filename[1:-1]
     with open(filename) as file:
         input = file.read()
@@ -21,17 +21,16 @@ def load(filename):
     return output
 
 
-primitive_procedure_names.append('load')
 primitive_procedure_objects.append(['primitive', load])
-the_global_environment = Environment(primitive_procedure_names, primitive_procedure_objects)
+the_global_environment = Environment(list(primitive_procedure_names) + ['load'], primitive_procedure_objects)
 load('"./init.scm"')
 
 if __name__ == "__main__":
     if len(sys.argv) == 1:
         while True:
-            input = input("Input: ")
+            expressions = input("Input: ")
             result = []
-            parseInput(input, 0, result)
+            parseInput(expressions, 0, result)
             for exp in result:
                 print(formatOutput(eval(exp, the_global_environment)))
     else:
